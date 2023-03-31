@@ -1,9 +1,3 @@
-//
-//  GroceryItemCell.swift
-//  GreenGroceryMVVM
-//
-//  Created by Alexander Korchak on 27.03.2023.
-//
 
 import Foundation
 import UIKit
@@ -12,7 +6,7 @@ import SnapKit
 class GroceryItemCell: UITableViewCell {
     static let reuseIdentifier = "GroceryItemCell"
     let control = AddBagControl()
-    let viewModel = AddBagViewModel(title: "Add to bag", stepValue: 0)
+    let viewModel = AddBagViewModel(skuId: "1", title: "Add to bag", stepValue: 0)
  
     private lazy var groceryImage: UIImageView = {
         let imageView = UIImageView()
@@ -48,6 +42,9 @@ class GroceryItemCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        control.configure(usingViewModel: viewModel) { _ in
+            
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -56,9 +53,6 @@ class GroceryItemCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        control.configure(usingViewModel: viewModel) { _ in
-            
-        }
         setupElements()
         setupUI()
        
@@ -130,10 +124,11 @@ class GroceryItemCell: UITableViewCell {
         }
     }
     
-    func configure(using viewModel: GroceryItemViewModel) {
-        self.nameLabel.text = viewModel.title
-        self.descriptionLabel.text = viewModel.details
-        self.groceryImage.image = UIImage(named: viewModel.image)
-        self.priceLabel.text = viewModel.price
-    }
-}
+    func configure(using viewModel: GroceryItemViewModel, addToCartClosure: @escaping BagClosure) {
+         self.nameLabel.text = viewModel.title
+         self.groceryImage.image = UIImage(named: viewModel.image)
+         self.descriptionLabel.text = viewModel.details
+         self.priceLabel.text = viewModel.price
+         self.control.configure(usingViewModel: AddBagViewModel(skuId: viewModel.id, title: "Add to bag", stepValue: 0), bagClosure: addToCartClosure)
+         self.selectionStyle = .none
+     }}

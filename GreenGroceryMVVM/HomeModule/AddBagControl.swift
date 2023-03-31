@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+typealias BagClosure = ((skuId: String, stepValue: Int)) -> ()
+
 class AddBagControl: UIControl {
     
     var viewModel: AddBagViewModel! {
@@ -63,24 +65,23 @@ class AddBagControl: UIControl {
     
     @objc func addToBag() {
         self.viewModel = self.viewModel.onAddToBag()
-        self.callback?(viewModel.stepValue)
+        self.callback?((viewModel.skuId, viewModel.stepValue))
     }
     
     @objc func incrementButton() {
         self.viewModel = self.viewModel.onIncrement()
-        self.callback?(viewModel.stepValue)
+        self.callback?((viewModel.skuId, viewModel.stepValue))
     }
     
     @objc func decrementButton() {
         self.viewModel = self.viewModel.onDecrement()
-        self.callback?(viewModel.stepValue)
+        self.callback?((viewModel.skuId, viewModel.stepValue))
     }
     
-    typealias BagClosure = (Int) -> ()
     
     func configure(usingViewModel viewModel: AddBagViewModel, bagClosure: @escaping BagClosure) {
-        self.viewModel = viewModel
-        self.addToBagButton.setTitle(viewModel.title, for: .normal)
-        self.callback = bagClosure
-    }
+           self.viewModel = viewModel
+           self.addToBagButton.setTitle(viewModel.title, for: .normal)
+           self.callback = bagClosure
+       }
 }

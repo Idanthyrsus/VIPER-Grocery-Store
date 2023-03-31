@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  GreenGroceryMVVM
-//
-//  Created by Alexander Korchak on 26.03.2023.
-//
 
 import UIKit
 import SnapKit
@@ -13,70 +7,72 @@ protocol HomeView: AnyObject {
 }
 
 class HomeViewController: UIViewController {
-    var list: [GroceryItemViewModel] = []
-    let control = AddBagControl()
-    let viewModel = AddBagViewModel(title: "Add to bag", stepValue: 1
-    )
+    
     var presenter: HomePresentation?
- 
     
+    var list: [GroceryItemViewModel] = []
+
     private lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .insetGrouped)
-        table.register(GroceryItemCell.self, forCellReuseIdentifier: GroceryItemCell.reuseIdentifier)
-        return table
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.register(GroceryItemCell.self, forCellReuseIdentifier: "cell")
+        tableView.layer.cornerRadius = 20
+        tableView.clipsToBounds = true
+        return tableView
     }()
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
+        
+        self.view.addSubview(tableView)
+
         tableView.delegate = self
         tableView.dataSource = self
-        setupUIElements()
+        
+        //setupUI()
+        
         presenter?.viewDidLoad()
     }
     
-    func setupUIElements() {
-        self.view.addSubview(tableView)
-        
-        tableView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalToSuperview()
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
+    
+    
 }
 
-extension HomeViewController: HomeView {
+extension HomeViewController: HomeView, UITableViewDelegate, UITableViewDataSource  {
     func updateGroceries(groceriesList: [GroceryItemViewModel]) {
         self.list = groceriesList
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-      
-        print("grocery list \(groceriesList)")
+        print("Grocery list: \(groceriesList)")
     }
-}
-
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GroceryItemCell.reuseIdentifier, for: indexPath) as? GroceryItemCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? GroceryItemCell else {
             return UITableViewCell()
         }
-        
-        let viewModel = list[indexPath.row]
-       
-        cell.configure(using: viewModel)
-        
+        let newViewModel = list[indexPath.row]
+        cell.configure(using: newViewModel) { result in
+            print("Cart item added with sku = \(result.skuId) and quantity = \(result.stepValue)")
+            let skuItem: SkuItem = (skuId: result.skuId, quantity: result.stepValue)
+            self.presenter?.onAddToCart(skuItem: skuItem)
+        }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        return 150
     }
+    
 }
+
 

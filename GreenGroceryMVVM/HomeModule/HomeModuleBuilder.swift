@@ -10,10 +10,10 @@ import UIKit
 
 class HomeModuleBuilder {
     
-    static func build(usingNavigationFactory factory: NavigationFactory) -> UINavigationController {
+    static func build(usingNavigationFactory factory: NavigationFactory) -> UIViewController {
         let view = HomeViewController()
         view.title = "Fresh Groceries"
-        let interactor = HomeInteractor(service: StubService.shared)
+        let interactor = HomeInteractor(service: StubService.shared, database: RealmDatabase.shared)
         let router = HomeRouter(viewController: view)
         let presenter = HomePresenter(interactor: interactor, router: router, view: view)
         view.presenter = presenter

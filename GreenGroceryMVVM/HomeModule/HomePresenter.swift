@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomePresentation {
     func viewDidLoad()
+    func onAddToCart(skuItem: SkuItem)
 }
 
 class HomePresenter {
@@ -32,6 +33,16 @@ extension HomePresenter: HomePresentation {
                     self?.view?.updateGroceries(groceriesList: groceryList)
                 }
             })
+        }
+    }
+    
+    func onAddToCart(skuItem: SkuItem) {
+        DispatchQueue.global(qos: .background).async {
+           let updated = self.interactor?.addToCart(skuItem: skuItem)
+            print("Add to cart updated with result \(String(describing: updated))")
+            DispatchQueue.main.async {
+                // TODO: - Implement activity indicator
+            }
         }
     }
 }
