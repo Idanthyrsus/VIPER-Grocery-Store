@@ -32,7 +32,7 @@ class GroceryItemCell: UITableViewCell {
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .black)
         return label
     }()
     
@@ -87,7 +87,7 @@ class GroceryItemCell: UITableViewCell {
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(6)
             make.height.equalTo(20)
-            make.width.equalTo(40)
+            make.width.equalTo(60)
             make.leading.equalTo(groceryImage.snp.trailing).offset(3)
         }
     }

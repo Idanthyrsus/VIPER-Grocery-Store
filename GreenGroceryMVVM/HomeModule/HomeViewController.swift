@@ -25,12 +25,8 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         self.view.addSubview(tableView)
-
         tableView.delegate = self
         tableView.dataSource = self
-        
-        //setupUI()
-        
         presenter?.viewDidLoad()
     }
     
@@ -38,8 +34,6 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
-    
 }
 
 extension HomeViewController: HomeView, UITableViewDelegate, UITableViewDataSource  {
@@ -65,14 +59,12 @@ extension HomeViewController: HomeView, UITableViewDelegate, UITableViewDataSour
             let skuItem: SkuItem = (skuId: result.skuId, quantity: result.stepValue)
             self.presenter?.onAddToCart(skuItem: skuItem)
         }
-
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 120
     }
-    
 }
 
 

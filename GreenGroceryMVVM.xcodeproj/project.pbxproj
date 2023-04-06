@@ -28,6 +28,8 @@
 		9E6BA78029D46332008A4E63 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9E6BA77F29D46332008A4E63 /* RealmSwift */; };
 		9E6BA78229D464DB008A4E63 /* RealmCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6BA78129D464DB008A4E63 /* RealmCartItem.swift */; };
 		9E6BA78429D46632008A4E63 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6BA78329D46632008A4E63 /* CartItem.swift */; };
+		9E704D5229DD718200D2B1A7 /* CartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E704D5129DD718200D2B1A7 /* CartInteractor.swift */; };
+		9E704D5429DD777500D2B1A7 /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E704D5329DD777500D2B1A7 /* TabBarPresenter.swift */; };
 		9E81ED2529D2D1D200CE9CAF /* GroceryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81ED2429D2D1D200CE9CAF /* GroceryItemViewModel.swift */; };
 		9EA117A429D0803600530994 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA117A329D0803600530994 /* AppDelegate.swift */; };
 		9EA117A629D0803600530994 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA117A529D0803600530994 /* SceneDelegate.swift */; };
@@ -60,6 +62,8 @@
 		9E6BA77929D4613A008A4E63 /* CartDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDB.swift; sourceTree = "<group>"; };
 		9E6BA78129D464DB008A4E63 /* RealmCartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCartItem.swift; sourceTree = "<group>"; };
 		9E6BA78329D46632008A4E63 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		9E704D5129DD718200D2B1A7 /* CartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartInteractor.swift; sourceTree = "<group>"; };
+		9E704D5329DD777500D2B1A7 /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
 		9E81ED2429D2D1D200CE9CAF /* GroceryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemViewModel.swift; sourceTree = "<group>"; };
 		9EA117A029D0803600530994 /* GreenGroceryMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenGroceryMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA117A329D0803600530994 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				9E68D13129D6F7D8003592F7 /* GroceryTabBarController.swift */,
 				9E68D13329D6F87A003592F7 /* TabBarModuleBuilder.swift */,
 				9E68D13529D6F908003592F7 /* TabBarRouter.swift */,
+				9E704D5129DD718200D2B1A7 /* CartInteractor.swift */,
+				9E704D5329DD777500D2B1A7 /* TabBarPresenter.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -325,12 +331,14 @@
 				9E6BA78229D464DB008A4E63 /* RealmCartItem.swift in Sources */,
 				9E45A50C29D1CF8200EFA03C /* StubService.swift in Sources */,
 				9E6BA77829D460E8008A4E63 /* RealmDatabase.swift in Sources */,
+				9E704D5229DD718200D2B1A7 /* CartInteractor.swift in Sources */,
 				9EA117BD29D08E6700530994 /* AddBagViewModel.swift in Sources */,
 				9E68D12829D6F30A003592F7 /* CartViewController.swift in Sources */,
 				9E68D13229D6F7D8003592F7 /* GroceryTabBarController.swift in Sources */,
 				9E6BA77A29D4613A008A4E63 /* CartDB.swift in Sources */,
 				9E68D13429D6F87A003592F7 /* TabBarModuleBuilder.swift in Sources */,
 				9E45A4E629D1B75B00EFA03C /* GroceryItemCell.swift in Sources */,
+				9E704D5429DD777500D2B1A7 /* TabBarPresenter.swift in Sources */,
 				9EA117A429D0803600530994 /* AppDelegate.swift in Sources */,
 				9EA117BB29D08B4B00530994 /* AddBagControl.swift in Sources */,
 				9E45A50429D1CDD500EFA03C /* HomeRouter.swift in Sources */,

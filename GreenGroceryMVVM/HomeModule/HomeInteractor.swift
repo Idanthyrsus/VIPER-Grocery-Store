@@ -27,10 +27,13 @@ class HomeInteractor {
 extension HomeInteractor: HomeUseCase {
     
     func addToCart(skuItem: SkuItem) -> Bool {
+        guard skuItem.quantity > 0 else {
+            return self.database.delete(usingSkuId: skuItem.skuId)
+        }
        return self.database.updateCart(using: CartItem(skuId: skuItem.skuId, value: skuItem.quantity))
     }
     
-    func getGroceries(completion: (GroceryResult) -> ()) {
+    func getGroceries(completion: (GroceryResult) -> Void) {
         service.fetchGroceries { result in
             completion(result)
         }

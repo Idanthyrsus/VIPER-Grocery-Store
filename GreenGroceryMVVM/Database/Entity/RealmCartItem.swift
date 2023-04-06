@@ -2,7 +2,6 @@ import RealmSwift
 import Foundation
 
 class RealmCartItem: Object {
-    
     @objc dynamic var skuId: String = ""
     @objc dynamic var value: Int = 0
     @objc dynamic var updated: Date = Date()
@@ -21,8 +20,6 @@ extension RealmCartItem {
 }
 
 extension CartItem {
-    
-    
     init(realCartItem: RealmCartItem) {
         self.skuId = realCartItem.skuId
         self.value = realCartItem.value
